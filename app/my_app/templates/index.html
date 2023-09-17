@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Template example</h1>
+    <p>Hello Flask</p>
+
+    <h3>Bucles control</h3>
+
+    {% if True and False %}
+    <p>{{ name }}</p>
+    {% else %}
+    <p>Sin datos</p>
+    {% endif %}
+
+    <ul>
+        {% for i in [1,2,3,4,5,6,7,8,9,10] %}
+        <li>
+            {% if loop.first %}
+            Primero -
+            {% endif %}
+            {{ loop.index0 }}-{{ i }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Filtros</h3>
+
+    <!-- {% if  task | default('No hay tarea') == 'Andres' %}
+        <p>Tenemos data</p>
+    {% endif %} -->
+    <p>{{ task | default('No hay tarea') }}</p>
+
+    <p>{{ '
+    <h1>Hola Mundo</h1>' | escape}}</p>
+
+    <p>{{ 5.1425|int }}</p>
+    <p>{{ 5|float }}</p>
+    <p>{{ [1,2,3,4,5,6]|min }}</p>
+    <p>{{ [1,2,3,4,5,6]|max }}</p>
+    <p>{{ 6.141|round }}</p>
+    <p>{{ 6.5|round }}</p>
+    <p>{{ 6.51|round }}</p>
+    <p>{{ 6.51441|round(2) }}</p>
+    <p>{{ 6.5199|round(2) }}</p>
+    <p>{{ "Hello Flask"|replace("Hello","Hi") }}</p>
+    <p>{{ ["Hello", "Flask", "world", 5]|join(" ") }}</p>
+    <p>{{ "Hello Flask"|lower }}</p>
+    <p>{{ "Hello Flask"|upper }}</p>
+
+    {% filter lower %}
+    Hello Flask
+    {% endfilter%}
+
+    <p>{{ "Hello Flask"|reverse }}</p>
+    <p>{{ [1,2,3,4,5,6]|reverse }}</p>
+
+    {% for e in [1,2,3,4,5,6]|reverse %}
+    {{ e }}
+    {% endfor %}
+
+    <p>{{ "Hello Flask"|length }}</p>
+    <p>{{ [1,2,3,4,5,6]|length }}</p>
+
+    <h3>sort</h3>
+    {% for e in [-1,-2,5,30,4,50,6]|sort(reverse=true) %}
+    {{ e }}
+    {% endfor %}
+
+    <h3>slice</h3>
+    <ul>
+        {% for e in [-1,-2,5,30,4,50,6]|slice(3) %}
+        <li>{{ e }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>variables</h3>
+
+    {% set var1 = 'Flaks' %}
+    {% set var2 = var1 %}
+    {% set var3 = '<h3>Hola Flask</h3>' %}
+
+    {{ var1 }}
+    {{ var2 }}
+    {{ var3 }}
+
+    <h3>raw</h3>
+
+    {% raw %}
+        var1
+        {{var1}}
+        <h3>Hola Flask</h3>
+    {% endraw %}
+
+    <h3>macro</h3>
+
+    {% macro suma(v1, v2) %}
+        <p>{{v1}} + {{v2}} = {{ v1+v2 }}</p>
+    {% endmacro %}
+
+    {{ suma(4, 3)  }}
+
+</body>
+
+</html>
