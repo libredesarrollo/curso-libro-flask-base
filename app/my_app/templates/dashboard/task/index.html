@@ -6,10 +6,9 @@
     <a href="{{ url_for('tasks.create',) }}" >Create</a>
     <ul>
         {% for t in tasks %}
-            <li>{{t}}</li>
-            <!-- <li><a href="/tasks/update/{{ loop.index0 }}" >Edit</a></li> -->
-            <li><a href="{{ url_for('tasks.update',id=loop.index0) }}" >Edit</a></li>
-            <li><a href="{{ url_for('tasks.delete',id=loop.index0) }}" >Delete</a></li>
+            <li>{{t.name}}</li>
+            <li><a href="{{ url_for('tasks.update',id=t.id) }}" >Edit</a></li>
+            <li><a href="{{ url_for('tasks.delete',id=t.id) }}" >Delete</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
