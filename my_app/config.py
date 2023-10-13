@@ -7,7 +7,7 @@ def allowed_extensions_file(filename): #test.png
     return '.' in filename and filename.lower().rsplit('.',1)[1] in ALLOWED_EXTENSIONS_FILES
 
 class Config(object):
-    UPLOAD_FOLDER=os.path.realpath('.') + '/app/my_app/uploads'
+    UPLOAD_FOLDER=os.path.realpath('.') + '/my_app/uploads'
 
 class ProdConfig(Config):
     pass

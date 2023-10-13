@@ -10,6 +10,18 @@
     </ul>
     {% endif %}
 
+    {{ form.category.label }}
+    {{ form.category }}
+    {% if form.category.errors %}
+    <ul>    
+        {% for error in form.category.errors %}
+            <li>
+                Category - {{ error }}
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
     {% if id: %}
         {{ form.file.label }}
         {{ form.file }}
