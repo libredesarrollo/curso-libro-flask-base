@@ -1,6 +1,6 @@
 import os
 
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 
 from werkzeug.utils import secure_filename
 
@@ -23,6 +23,7 @@ def delete(id:int):
     task=operations.getById(id,True)
     operations.delete(task.id)
     doc_operations.delete(task.document_id)
+    flash('The registry has been removed successfully')
     return redirect(url_for('tasks.index'))
 
 @taskRoute.route('/create', methods=('GET','POST'))
@@ -32,6 +33,7 @@ def create():
     form.category.choices = [ (c.id, c.name) for c in models.Category.query.all()]
     if form.validate_on_submit():
         operations.create(form.name.data, form.category.data)
+        flash('The registry has been created successfully')
     
     return render_template('dashboard/task/create.html', form=form)
 
@@ -62,6 +64,7 @@ def update(id:int):
             document = doc_operations.create(filename, filename.lower().rsplit('.',1)[1],f)
 
             operations.update(id, form.name.data, form.category.data, document.id)
+        flash('The registry has been updated successfully','info')
 
         # return redirect(url_for('tasks.index'))
 
@@ -76,6 +79,7 @@ def tagAdd(id:int):
 
     if(formTag.validate_on_submit()):
         operations.addTag(id,formTag.tag.data)
+        flash('The registry has been created successfully')
 
     return redirect(url_for('tasks.update', id=id))
 
@@ -85,6 +89,7 @@ def tagRemove(id:int):
 
     if(formTag.validate_on_submit()):
         operations.removeTag(id,formTag.tag.data)
+        flash('The registry has been removed successfully')
 
     return redirect(url_for('tasks.update', id=id))
 
