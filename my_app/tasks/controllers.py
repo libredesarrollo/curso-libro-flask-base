@@ -70,8 +70,8 @@ def update(id:int):
         if f and config.allowed_extensions_file(f.filename):
             filename = secure_filename(f.filename)
             document = doc_operations.create(filename, filename.lower().rsplit('.',1)[1],f)
-
             operations.update(id, form.name.data, form.category.data, document.id)
+            
         flash('The registry has been updated successfully','info')
 
         # return redirect(url_for('tasks.index'))

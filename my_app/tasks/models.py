@@ -23,10 +23,26 @@ class Task(db.Model):
 
     tags = relationship('Tag', secondary=task_tag)
 
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'category': self.category.name,
+            'category_id': self.category_id,
+        }
+
 class Category(db.Model):
     __tablename__='categories'
     id=db.Column(db.Integer, primary_key=True)
     name=db.Column(db.String(255))
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name
+        }
 
 class Tag(db.Model):
     __tablename__='tags'

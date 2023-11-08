@@ -1,5 +1,7 @@
 import os
 
+from datetime import timedelta
+
 ALLOWED_EXTENSIONS_FILES = { 'pdf', 'jpg', 'jpeg', 'gif', 'png' }
 
 def allowed_extensions_file(filename): #test.png
@@ -8,6 +10,7 @@ def allowed_extensions_file(filename): #test.png
 
 class Config(object):
     UPLOAD_FOLDER=os.path.realpath('.') + '/my_app/uploads'
+    JWT_ACCESS_TOKEN_EXPIRES=timedelta(hours=24)
 
 class ProdConfig(Config):
     pass
