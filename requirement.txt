@@ -14,13 +14,17 @@ Flask-RESTful==0.3.10
 Flask-SQLAlchemy==3.1.1
 Flask-WTF==1.2.1
 idna==3.4
+iniconfig==2.0.0
 itsdangerous==2.1.2
 Jinja2==3.1.2
 Mako==1.2.4
 MarkupSafe==2.1.3
+packaging==23.2
+pluggy==1.3.0
 pycparser==2.21
 PyJWT==2.8.0
 PyMySQL==1.1.0
+pytest==7.4.3
 pytz==2023.3.post1
 requests==2.31.0
 six==1.16.0

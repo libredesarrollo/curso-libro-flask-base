@@ -53,8 +53,9 @@ app.register_blueprint(authRoute)
 #route
 @app.route('/')
 def hello_world(): # -> str
-    name = request.args.get('name','Desarrollolibre')
-    return render_template('index.html',task=name,name=name)
+    # name = request.args.get('name','Desarrollolibre')
+    return {'hello': 'world'}
+    # return render_template('index.html',task=name,name=name)
     # return 'Hello Flask'
 
 

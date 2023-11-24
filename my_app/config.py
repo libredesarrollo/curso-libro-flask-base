@@ -20,3 +20,6 @@ class DevConfig(Config):
     SQLALCHEMY_DATABASE_URI="mysql+pymysql://sail:password@localhost:3306/testing" 
     SECRET_KEY='SECRET_KEY'
     # WTF_CSRF_ENABLED = False
+
+class TestingConfig(DevConfig):
+    WTF_CSRF_ENABLED=False

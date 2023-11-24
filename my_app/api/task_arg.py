@@ -33,7 +33,7 @@ parser.add_argument('category_id', type=int, required=True, help='Category canno
 class TaskArgApi(Resource):
 
     @marshal_with(task_fields)
-    @jwt_required()
+    # @jwt_required()
     def get(self, id:int=None):
 
         # user_id = get_jwt_identity()
@@ -62,7 +62,7 @@ class TaskArgApi(Resource):
 
         return task.serialize
 
-    @jwt_required()
+    # @jwt_required()
     def delete(self, id:int):
         task = operations.getById(id)
         if not task:

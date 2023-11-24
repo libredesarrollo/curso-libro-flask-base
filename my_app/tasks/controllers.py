@@ -13,7 +13,7 @@ from my_app import config
 taskRoute = Blueprint('tasks',__name__,url_prefix='/tasks',)
 
 @taskRoute.before_request
-@login_required
+# @login_required
 def before():
     pass
 
