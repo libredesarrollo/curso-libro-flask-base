@@ -1,0 +1,47 @@
+{% macro m_pagination(pagination, url='tasks.index') %}
+
+<nav>
+    <ul class="pagination justify-content-center">
+
+        {% if pagination.has_prev %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for(url,page=pagination.prev_num) }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% endif %}
+
+
+        {% for page in pagination.iter_pages() %}
+            {% if page != pagination.page %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for(url,page=page) }}" aria-label="Previous">
+                        <span aria-hidden="true">{{ page }}</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item active">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">{{ page }}</span>
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if pagination.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for(url,page=pagination.next_num) }}" aria-label="Previous">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% endif %}
+
+
+
+         
+
+    </ul>
+</nav>
+
+{% endmacro  %}
+

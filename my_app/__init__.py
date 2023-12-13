@@ -8,7 +8,7 @@ from flask_jwt_extended import JWTManager
 
 from my_app.config import DevConfig
 
-app = Flask(__name__) #template_folder='/pages'
+app = Flask(__name__, static_folder='assets') #template_folder='/pages'
 
 #configurations
 app.config.from_object(DevConfig)

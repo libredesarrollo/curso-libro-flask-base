@@ -1,33 +1,51 @@
-    {{ form.name.label }}
-    {{ form.name }}
-    {% if form.name.errors %}
-    <ul>    
+<div class="row">
+
+    <div class="col">
+        {% set errorForm = '' %}
+        {% if form.name.errors %}
+        {% set errorForm = 'is-invalid' %}
         {% for error in form.name.errors %}
-            <li>
-                Name - {{ error }}
-            </li>
+        <p class="text-danger">
+            Name - {{ error }}
+        </p>
         {% endfor %}
-    </ul>
-    {% endif %}
+        {% endif %}
 
-    {{ form.category.label }}
-    {{ form.category }}
-    {% if form.category.errors %}
-    <ul>    
+        <div class="mb-3">
+            {{ form.name.label(class='form-label') }}
+            {{ form.name(class='form-control '+errorForm) }}
+        </div>
+    </div>
+
+
+    <div class="col">
+        {% if form.category.errors %}
+        {% set errorForm = 'is-invalid' %}
         {% for error in form.category.errors %}
-            <li>
-                Category - {{ error }}
-            </li>
+        <p class="text-danger">
+            Category - {{ error }}
+        </p>
         {% endfor %}
-    </ul>
-    {% endif %}
+        {% endif %}
 
-    {% if id: %}
-        {{ form.file.label }}
-        {{ form.file }}
-    {% endif %}
+        <div class="mb-3">
+            {{ form.category.label(class='form-label') }}
+            {{ form.category(class='form-select '+errorForm) }}
+        </div>
+    </div>
+</div>
 
-    <!-- {% if form.errors %}
+{% if id: %}
+    <div class="row mb-2">
+        <div class="col">
+            {{ form.file.label(class='form-label') }}
+            {{ form.file(class='form-control') }}
+        </div>
+    </div>
+{% endif %}
+
+
+<!-- {% if form.errors %}
         <ul>
         {% for error in form.errors %}
             <li>
@@ -37,5 +55,5 @@
         </ul>
     {% endif %} -->
 
-    {{ form.csrf_token }}
-<button type="submit">Send</button>
+{{ form.csrf_token }}
+<button type="submit" class="btn btn-primary ">Send</button>

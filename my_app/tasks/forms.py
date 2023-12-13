@@ -3,7 +3,7 @@ from wtforms import StringField, FileField, SelectField, HiddenField
 from wtforms.validators import InputRequired
 
 class Task(FlaskForm):
-    name=StringField('Name', validators=[InputRequired()])
+    name=StringField('Name', validators=[InputRequired()], render_kw={"class":"form-control"})
     file=FileField('Document',)
     category = SelectField('Category', validate_choice=True) #choices=[(1, "Abc"), (2, "Def")]
 

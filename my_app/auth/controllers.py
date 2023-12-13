@@ -1,4 +1,4 @@
-from flask import g, Blueprint, flash, redirect, url_for, render_template, request, jsonify
+from flask import g, Blueprint, flash, redirect, url_for, render_template, request, jsonify, session
 
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_jwt_extended import create_access_token
@@ -65,6 +65,7 @@ def login():
             return render_template('user/login.html', form=form)
 
         login_user(existing_user)
+        session['user'] = existing_user.serialize
         flash('You have successfully logged in.', 'success')
         return redirect(url_for('tasks.index'))
 

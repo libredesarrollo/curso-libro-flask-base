@@ -1,14 +1,39 @@
 {% extends "dashboard/master.html" %}
+{% from "macro/pagination.html" import m_pagination %}
 
 {% block title %} Index task {% endblock%}
 
 {% block content %}
-    <a href="{{ url_for('tasks.create',) }}" >Create</a>
-    <ul>
-        {% for t in tasks %}
-            <li>{{t.name}}</li>
-            <li><a href="{{ url_for('tasks.update',id=t.id) }}" >Edit</a></li>
-            <li><a href="{{ url_for('tasks.delete',id=t.id) }}" >Delete</a></li>
-        {% endfor %}
-    </ul>
+<a class="btn btn-success" href="{{ url_for('tasks.create',) }}">Create</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Options
+            </th>
+        </tr>
+    </thead>
+    {% for t in tasks.items %}
+    <tbody>
+        <tr>
+            <td>{{t.id}}</td>
+            <td>{{t.name}}</td>
+            <td>
+                <a class="btn btn-secondary btn-sm" href="{{ url_for('tasks.update',id=t.id) }}">Edit</a>
+                <a class="btn btn-danger btn-sm" href="{{ url_for('tasks.delete',id=t.id) }}">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+
+</table>
+
+{{ m_pagination(tasks) }}
+
 {% endblock %}

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} {% endblock %} - Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
@@ -12,28 +14,30 @@
     <!-- flash 
     {# with messages = get_flashed_messages(with_categories=true, category_filter=['info']) #}
     -->
-    <div>
+    <div class="container mt-3 max-width-400">
         {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                        <li>{{message}}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info fade show">
+            {{message}}
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
     </div>
 
     <!-- body -->
-    <div>
-        {% block content %}
-        {% endblock %}
-    </div>
 
-    {% block footer %}
-        <p>Dashboard task</p>
+    {% block content %}
     {% endblock %}
 
+
+    {% block footer %}
+
+    {% endblock %}
+
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
 </body>
 
 </html>

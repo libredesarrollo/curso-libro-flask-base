@@ -3,21 +3,22 @@
 {% block title %} Update task {% endblock%}
 
 {% block content %}
-   <form  method="post" enctype="multipart/form-data">
-        {% include 'dashboard/task/_form.html' %} 
-   </form>
+<form method="post" enctype="multipart/form-data">
+   {% include 'dashboard/task/_form.html' %}
+</form>
 
-   {% if task.document: %}
-    <h3>Documento</h3>
-      {% with document=task.document %}
-         {% include 'dashboard/document/_detail.html' %}
-      {% endwith %}
-   {% endif %}
+<hr>
 
+{% if task.document: %}
+<h3>Documento</h3>
+{% with document=task.document %}
+{% include 'dashboard/document/_detail.html' %}
+{% endwith %}
+{% endif %}
 
-   <h3>Tags</h3>
+<h3>Tags</h3>
 
-   {% include 'dashboard/task/tag/index.html' %}
-   {% include 'dashboard/task/tag/assing.html' %}
+{% include 'dashboard/task/tag/index.html' %}
+{% include 'dashboard/task/tag/assing.html' %}
 
 {% endblock %}

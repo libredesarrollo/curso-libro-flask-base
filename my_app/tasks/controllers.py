@@ -1,6 +1,6 @@
 import os
 
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 
 from flask_login import login_required
 
@@ -13,14 +13,14 @@ from my_app import config
 taskRoute = Blueprint('tasks',__name__,url_prefix='/tasks',)
 
 @taskRoute.before_request
-# @login_required
+@login_required
 def before():
     pass
 
 @taskRoute.route('/')
 # @login_required
 def index():
-    return render_template('dashboard/task/index.html', tasks=operations.getAll())
+    return render_template('dashboard/task/index.html', tasks=operations.pagination(request.args.get('page', 1, type=int)))
 
 @taskRoute.route('/<int:id>')
 def show(id:int):

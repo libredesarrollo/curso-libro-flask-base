@@ -3,18 +3,26 @@
 {% block title %} Register user {% endblock%}
 
 {% block content %}
-   <form method="post">
-      {{ form.csrf_token }}
+<div class="container mt-5" style="max-width: 400px;">
+   <div class="card">
+      <div class="card-body">
+         <form method="post">
+            {{ form.csrf_token }}
 
-      {{ form.username.label }}
-      {{ form.username }}
+            {{ form.username.label(class='form-label') }}
+            {{ form.username(class='form-control') }}
 
-      {{ form.password.label }}
-      {{ form.password }}
+            {{ form.password.label(class='form-label mt-2') }}
+            {{ form.password(class='form-control') }}
 
-      {{ form.confirm.label }}
-      {{ form.confirm }}
+            {{ form.confirm.label(class='form-label mt-2') }}
+            {{ form.confirm(class='form-control') }}
 
-      <button type="submit">Send</button>
-   </form>
+            <div class="d-grid my-3">
+               <button type="submit" class="btn btn-success btn-block">Send</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
 {% endblock %}
