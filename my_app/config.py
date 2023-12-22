@@ -23,3 +23,4 @@ class DevConfig(Config):
 
 class TestingConfig(DevConfig):
     WTF_CSRF_ENABLED=False
+    BABEL_DEFAULT_LOCALE='en'

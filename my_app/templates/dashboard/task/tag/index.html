@@ -4,7 +4,7 @@
             <form action="{{ url_for('tasks.tagRemove',id=id) }}" method="post" class="d-inline">
                 {{ formTagRemove.csrf_token }}
                 {{ formTagRemove.tag(value=t.id) }}
-                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                <button class="btn btn-danger btn-sm" type="submit">{{ _('Delete') }}</button>
             </form>
         </li>
     {% endfor %}

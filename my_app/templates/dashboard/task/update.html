@@ -1,6 +1,6 @@
 {% extends "dashboard/master.html" %}
 
-{% block title %} Update task {% endblock%}
+{% block title %} {{ _('Update') }} {{ _('task') }} {% endblock%}
 
 {% block content %}
 <form method="post" enctype="multipart/form-data">
@@ -10,13 +10,13 @@
 <hr>
 
 {% if task.document: %}
-<h3>Documento</h3>
+<h3>{{ _('Document') }}</h3>
 {% with document=task.document %}
 {% include 'dashboard/document/_detail.html' %}
 {% endwith %}
 {% endif %}
 
-<h3>Tags</h3>
+<h3>{{ _('Tags') }}</h3>
 
 {% include 'dashboard/task/tag/index.html' %}
 {% include 'dashboard/task/tag/assing.html' %}

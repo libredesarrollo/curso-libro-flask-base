@@ -23,7 +23,7 @@
         {% set errorForm = 'is-invalid' %}
         {% for error in form.category.errors %}
         <p class="text-danger">
-            Category - {{ error }}
+            {{ _('Category') }} - {{ error }}
         </p>
         {% endfor %}
         {% endif %}
@@ -56,4 +56,4 @@
     {% endif %} -->
 
 {{ form.csrf_token }}
-<button type="submit" class="btn btn-primary ">Send</button>
+<button type="submit" class="btn btn-primary ">{{ _('Send') }}</button>

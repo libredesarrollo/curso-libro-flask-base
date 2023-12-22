@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
+from flask_babel import Babel
 
 from my_app.config import DevConfig
 
@@ -25,6 +26,13 @@ login_manager.init_app(app)
 #jwt
 jwt = JWTManager()
 jwt.init_app(app)
+
+#babel
+def get_locale():
+    # return 'en'
+    return request.accept_languages.best_match(['es','en'])
+
+babel = Babel(app,locale_selector=get_locale)
 
 #restful
 from my_app.api.task import TaskApi

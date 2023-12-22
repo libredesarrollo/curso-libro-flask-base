@@ -16,7 +16,7 @@
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Dashboard</a>
+            <a class="navbar-brand" href="/">{{ _('Dashboard') }}</a>
 
             <button class="navbar-toggler" type="button" data-bs-target="#navbarApp" data-bs-toggle="collapse">
                 <span class="navbar-toggler-icon"></span>
@@ -25,10 +25,10 @@
             <div class="navbar-collapse collapse" id="navbarApp">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a  class="nav-link" href="{{ url_for('tasks.index') }}">Tasks</a>
+                        <a  class="nav-link" href="{{ url_for('tasks.index') }}">{{ _('Tasks') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a target="_blank" class="nav-link" href="/api/task">Api Tasks</a>
+                        <a target="_blank" class="nav-link" href="/api/task">Api {{ _('Tasks') }}</a>
                     </li>
                 </ul>
 
@@ -40,15 +40,15 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a class="dropdown-item" href="#">                  
-                                    Hi {{ session['user'].username }}
+                                    {{ _('Hi') }} {{ session['user'].username }}
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="#">{{ _('Profile') }}</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a>
+                                <a class="dropdown-item" href="{{ url_for('auth.logout') }}">{{ _('Logout') }}</a>
                             </li>
                         </ul>
                     </li>
@@ -93,7 +93,7 @@
     </div>
 
     {% block footer %}
-        <p>Dashboard task</p>
+        <p>{{ _('Dashboard') }} {{ _('Tasks') }}</p>
     {% endblock %}
     
     <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>

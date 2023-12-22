@@ -1,21 +1,21 @@
 {% extends "dashboard/master.html" %}
 {% from "macro/pagination.html" import m_pagination %}
 
-{% block title %} Index task {% endblock%}
+{% block title %} {{ _('Index') }} {{ _('task') }} {% endblock%}
 
 {% block content %}
-<a class="btn btn-success" href="{{ url_for('tasks.create',) }}">Create</a>
+<a class="btn btn-success" href="{{ url_for('tasks.create',) }}">{{ _('Create') }}</a>
 <table class="table">
     <thead>
         <tr>
             <th>
-                ID
+                {{ _('ID') }}
             </th>
             <th>
-                Name
+                {{ _('Name') }}
             </th>
             <th>
-                Options
+                {{ _('Options') }}
             </th>
         </tr>
     </thead>
@@ -25,8 +25,8 @@
             <td>{{t.id}}</td>
             <td>{{t.name}}</td>
             <td>
-                <a class="btn btn-secondary btn-sm" href="{{ url_for('tasks.update',id=t.id) }}">Edit</a>
-                <a class="btn btn-danger btn-sm" href="{{ url_for('tasks.delete',id=t.id) }}">Delete</a>
+                <a class="btn btn-secondary btn-sm" href="{{ url_for('tasks.update',id=t.id) }}">{{ _('Edit') }}</a>
+                <a class="btn btn-danger btn-sm" href="{{ url_for('tasks.delete',id=t.id) }}">{{ _('Delete') }}</a>
             </td>
         </tr>
     </tbody>
