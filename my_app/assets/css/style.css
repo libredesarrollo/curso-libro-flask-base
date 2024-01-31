@@ -2,6 +2,9 @@
 .max-width-400 {
     max-width: 400px;
 }
+.max-width-600 {
+    max-width: 600px;
+}
 
 .nav-avatar {
     width: 30px;

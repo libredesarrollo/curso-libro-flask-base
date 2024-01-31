@@ -1,0 +1,10 @@
+<form method="post" action="{{ url_for('auth.lang') }}">
+    {{ langForm.csrf_token }}
+
+    {{ langForm.lang.label(class='form-label') }}
+    {{ langForm.lang(class='form-select') }}
+
+    <div class="d-grid my-3">
+       <button type="submit" class="btn btn-success btn-block">{{_('Send')}}</button>
+    </div>
+</form>

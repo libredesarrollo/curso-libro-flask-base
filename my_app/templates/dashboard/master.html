@@ -35,7 +35,13 @@
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown dropstart">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="border border-info rounded-circle nav-avatar" src="https://randomuser.me/api/portraits/women/9.jpg" />
+
+                            {% if session['user']['avatar_id']: %}
+                               <img class="border border-info rounded-circle nav-avatar" src="{{ url_for('static', filename='uploads/avatar/'+session['user']['avatar']) }}">
+                            {% else %}
+                                <img class="border border-info rounded-circle nav-avatar" src="https://randomuser.me/api/portraits/women/9.jpg" />
+                            {% endif %}
+
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -44,7 +50,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">{{ _('Profile') }}</a>
+                                <a class="dropdown-item" href="{{ url_for('auth.profile') }}">{{ _('Profile') }}</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>

@@ -20,8 +20,8 @@ def getAll():
     tasks = db.session.query(models.Task).all()
     return tasks
 
-def create(name: str, category_id:int):
-    taskdb = models.Task(name=name, category_id=category_id)
+def create(name: str, category_id:int, user_id:int):
+    taskdb = models.Task(name=name, category_id=category_id, user_id=user_id)
     db.session.add(taskdb)
     db.session.commit()
     db.session.refresh(taskdb)
@@ -45,8 +45,11 @@ def delete(id: int):
     db.session.delete(taskdb)
     db.session.commit()
 
-def pagination(page:int=1, per_page:int=10):
-    return models.Task.query.paginate(page=page, per_page=per_page)
+def pagination(page:int=1, per_page:int=10, user_id=None):
+    if user_id is None:
+        return models.Task.query.paginate(page=page, per_page=per_page)
+    
+    return models.Task.query.filter(models.Task.user_id==user_id).paginate(page=page, per_page=per_page)
 
 #tags
 def addTag(id: int, tagid:int):

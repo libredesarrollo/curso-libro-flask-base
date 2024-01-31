@@ -1,0 +1,25 @@
+{% if session['user']['avatar_id']: %}
+   <div class="d-flex flex-column">
+      <img style="width: 100px;" class="m-auto rounded-circle border border-primary" src="{{ url_for('static', filename='uploads/avatar/'+session['user']['avatar']) }}">
+      <p class="m-auto mt-2">{{session['user']['first_name']}}</p>
+   </div>
+   <form method="post" action="{{ url_for('auth.avatarDestroy') }}" enctype="multipart/form-data">
+      {{ avatarForm.csrf_token }}
+   
+      <div class="d-grid my-3">
+         <button type="submit" class="w-50 btn btn-danger btn-sm m-auto">{{_('Delete')}}</button>
+      </div>
+   </form>
+   <hr>
+{% endif %}
+
+<form method="post" action="{{ url_for('auth.avatarUpload') }}" enctype="multipart/form-data">
+   {{ avatarForm.csrf_token }}
+
+   {{ avatarForm.avatar.label(class='form-label mt-2') }}
+   {{ avatarForm.avatar(class='form-control') }}
+
+   <div class="d-grid my-3">
+      <button type="submit" class="btn btn-success btn-block">{{_('Send')}}</button>
+   </div>
+</form>

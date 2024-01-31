@@ -1,0 +1,31 @@
+{% set ns = namespace(urlSNUser='') %}
+
+{% for s in socialNeworks %}
+<form method="post" action="{{ url_for('auth.saveSocialNetwork') }}">
+    {{ socialNeworkForm.csrf_token }}
+
+    {% set ns.urlSNUser = '' %}  
+    {# URL de la red social del usuario #}
+    {# User's social network URL #}
+    {% set ns.socialNetworkId = '' %}  
+    {# ID de la red social en el modelo SocialNetwork #}
+    {# Social network ID in the Social Network model #}
+    {% for su in socialNeworksUser %} 
+        {% if su.social_network_id == s.id %} 
+         {# Se verifica si la red social que se esta iterando sea igual a la red social creada por el usuario #}
+         {# It is verified if the social network that is being iterated is equal to the social network created by the user #}
+          {% set ns.urlSNUser = su.url %}
+          {% set ns.socialNetworkId = s.id %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="input-group mb-3">
+        <a class="btn btn-outline-danger" href="{{ url_for('auth.deleteSocialNetwork', social_network_id = ns.socialNetworkId) }}">{{_('Delete')}}</a>
+        {{ socialNeworkForm.name(class='form-control', placeholder=s.name, value=ns.urlSNUser) }}
+        <button class="btn btn-outline-secondary" type="submit">{{_('Send')}}</button>
+    </div>
+
+    {{ socialNeworkForm.social_network_id(value=s.id) }}
+
+</form>
+{% endfor %}

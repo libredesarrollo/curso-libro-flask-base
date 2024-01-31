@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request
+from functools import wraps
+
+from flask import Flask, render_template, request, session
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -29,10 +31,26 @@ jwt.init_app(app)
 
 #babel
 def get_locale():
-    # return 'en'
+    # return 'es'
+
+    if session['user'] and session['user']['lang']:
+        return session['user']['lang']
+    
     return request.accept_languages.best_match(['es','en'])
 
 babel = Babel(app,locale_selector=get_locale)
+
+def roles_required(*role_names):
+    def wrapper(f):
+        @wraps(f)   
+        def wrap(*args, **kwargs):
+            for r in role_names:
+                if session['user']['roles'].find(r) < 0:
+                    return "You do not have the role to perform this operation", 401
+                
+            return f(*args, **kwargs)
+        return wrap
+    return wrapper
 
 #restful
 from my_app.api.task import TaskApi
@@ -57,13 +75,22 @@ app.register_blueprint(authRoute)
 #create db
 # with app.app_context():
 #     db.create_all()
-
+from my_app.tasks.models import Task
+from my_app.auth.models import User
+from sqlalchemy.sql.expression import or_
 #route
+
+from my_app.util.template_filter import text_to_upper
+app.add_template_filter(text_to_upper)
+
 @app.route('/')
 def hello_world(): # -> str
-    # name = request.args.get('name','Desarrollolibre')
-    return {'hello': 'world'}
-    # return render_template('index.html',task=name,name=name)
+    name = request.args.get('name','Desarrollolibre')
+    # return {'hello': 'world'}
+
+    print(db.session.query(Task.name.distinct().label("title")).all())
+
+    return render_template('index.html',task=name,name=name)
     # return 'Hello Flask'
 
 

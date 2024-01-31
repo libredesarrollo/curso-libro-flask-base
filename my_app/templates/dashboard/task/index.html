@@ -25,8 +25,10 @@
             <td>{{t.id}}</td>
             <td>{{t.name}}</td>
             <td>
-                <a class="btn btn-secondary btn-sm" href="{{ url_for('tasks.update',id=t.id) }}">{{ _('Edit') }}</a>
-                <a class="btn btn-danger btn-sm" href="{{ url_for('tasks.delete',id=t.id) }}">{{ _('Delete') }}</a>
+                {% if session['user']['roles'].find('SAVE_TASK') >= 0 %}
+                    <a class="btn btn-secondary btn-sm" href="{{ url_for('tasks.update',id=t.id) }}">{{ _('Edit') }}</a>
+                    <a class="btn btn-danger btn-sm" href="{{ url_for('tasks.delete',id=t.id) }}">{{ _('Delete') }}</a>
+                {% endif %}
             </td>
         </tr>
     </tbody>

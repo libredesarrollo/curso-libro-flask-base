@@ -1,0 +1,16 @@
+<form method="post" action="{{ url_for('auth.changeInformation') }}">
+    {{ changeUserInformationForm.csrf_token }}
+
+    {{ changeUserInformationForm.firstname.label(class='form-label') }}
+    {{ changeUserInformationForm.firstname(class='form-control') }}
+
+    {{ changeUserInformationForm.lastname.label(class='form-label mt-2') }}
+    {{ changeUserInformationForm.lastname(class='form-control') }}
+
+    {{ changeUserInformationForm.email.label(class='form-label mt-2') }}
+    {{ changeUserInformationForm.email(class='form-control') }}
+
+    <div class="d-grid my-3">
+       <button type="submit" class="btn btn-success btn-block">{{_('Send')}}</button>
+    </div>
+ </form>
