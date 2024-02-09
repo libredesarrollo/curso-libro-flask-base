@@ -51,7 +51,7 @@ def register():
         db.session.commit()
 
         token = generate_confirmation_token(user.email)
-        # TODO send email
+        # send email
         html = render_template('user/email_confirm_user.html', token=token)
         send_email(user.email, 'Confirm account',html)
 

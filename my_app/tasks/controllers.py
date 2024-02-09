@@ -9,7 +9,9 @@ from werkzeug.utils import secure_filename
 
 from my_app.tasks import operations, forms, models
 from my_app.documents import operations as doc_operations
-from my_app import config, roles_required
+from my_app import config, roles_required, db
+
+from my_app.auth.models import User
 
 # from my_app.util.user.confirmation import generate_confirmation_token
 
@@ -26,7 +28,10 @@ def index():
     # token = generate_confirmation_token(session['user']['email'])
     # print(token)
 
-    print(html)
+
+    print(db.session.query(User).join(models.Task.user).all())
+
+
     if session['user']['roles'].find('ADMIN') >= 0:
         tasks = operations.pagination(request.args.get('page', 1, type=int))
     else:
